@@ -1,0 +1,26 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "extends": ["plugin:import/errors", "eslint:recommended", "prettier"], // prettier should be in last position
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "import/no-unresolved": [2, { "commonjs": true } ], // Ensures an imported module can be resolved to a module on the local filesystem
+    "no-only-tests/no-only-tests": "error", // Designed to prevent you from committing .only tests to CI, disabling tests for your whole team.,
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true }], // This rule is aimed at eliminating unused variables, functions, and function parameters.
+    "prettier/prettier": "error"
+  },
+  "plugins": ["no-only-tests", "prettier"],
+  "devDependencies":{
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-no-only-tests": "2.4.0",
+    "eslint-plugin-prettier": "3.1.3",
+    "prettier": "1.19.1"
+  }
+}

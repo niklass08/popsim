@@ -1,0 +1,15 @@
+{
+  "name": "popsim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "individual.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@std/esm": "^0.26.0"
+  }
+}
