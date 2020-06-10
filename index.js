@@ -7,14 +7,14 @@ france.createOneRandomSick();
 
 function draw() {
     const canvas = document.getElementById('canvas');
-    const canvasWidth = canvas.width = 400;
-    const canvasHeight = canvas.height = 300;
+    canvas.width = config.canvasWidth;
+    canvas.height = config.canvasHeight;
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, 1000, 1000); // effacer le canvas
     context.fillStyle = 'green';
     france._population.forEach(french => {
-        const x = (french.x / config.internalWidth) * canvasWidth;
-        const y = (french.y / config.internalHeight) * canvasHeight;
+        const x = (french.x / config.internalWidth) * config.canvasWidth;;
+        const y = (french.y / config.internalHeight) * config.canvasHeight;;
         if (french.isSick) {
             context.fillStyle = 'red';
         }

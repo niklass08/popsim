@@ -1,7 +1,9 @@
 export default {
-    internalWidth: 100,
-    internalHeight: 100,
-    spreadDistance: 1,
+    internalWidth: 500,
+    internalHeight: 500,
+    canvasWidth: 800,
+    canvasHeight: 600,
+    spreadDistance: 2,
     propagationRate: 0.1,
-    populationSize: 200
+    populationSize: 1000
 }
