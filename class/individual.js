@@ -9,6 +9,17 @@ export default class individual {
         this.x = Math.random() * config.internalWidth;
         this.y = Math.random() * config.internalHeight;
         this.setNewGoal();
+        this.isDead = false
+    }
+
+    die(){
+        this.isDead = true;
+        this.isSick = false;
+    }
+
+    heal(){
+        this.isSick = false;
+        this.isHealed = true;
     }
 
     isGoalReached() {
@@ -29,9 +40,10 @@ export default class individual {
     }
 
     move() {
-
-        this.x += this.dx
-        this.y += this.dy
-        if (this.isGoalReached()) this.setNewGoal();
+        if(!this.isDead){
+            this.x += this.dx
+            this.y += this.dy
+            if (this.isGoalReached()) this.setNewGoal();
+        }
     }
 }
