@@ -7,6 +7,7 @@ export default class population {
     this._population = [];
     this.infectedArray = [0];
     this.deathArray = [0];
+    this.healedArray = [0];
   }
 
   init() {
@@ -110,7 +111,6 @@ export default class population {
       return acc;
     }, 0);
     this.deathArray.push(deathCount);
-
     return this.deathArray;
   }
 
@@ -124,6 +124,14 @@ export default class population {
         this._population[i].heal();
       }
     }
+    const healCount = this._population.reduce((acc, current) => {
+      if (current.isHealed) {
+        acc += 1;
+      }
+      return acc;
+    }, 0);
+    this.healedArray.push(healCount);
+    return this.healedArray;
   }
 
   move() {

@@ -7,6 +7,8 @@ france.createOneRandomSick();
 var ctx = document.getElementById('chart').getContext('2d');
 let sickData = [0];
 let deathData = [0];
+let healData = [0];
+let count = 0;
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
@@ -16,14 +18,20 @@ var myChart = new Chart(ctx, {
         label: '# of sick',
         data: sickData,
         borderWidth: 1,
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
         label: '# of death',
         data: deathData,
         borderWidth: 1,
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
       },
+      {
+        label: '# of healed',
+        data: healData,
+        borderWidth: 1,
+        backgroundColor: 'rgba(132, 99, 255, 0.5)',
+      }
     ],
   },
   options: {
@@ -69,18 +77,19 @@ function draw() {
   });
   france.move();
   let deathData = france.updateDeath();
-  france.updateHeal();
+  let healData = france.updateHeal();
   let sickData = france.propagate(config.propagationRate);
 
   myChart.data.labels.push(
     myChart.data.labels[myChart.data.labels.length - 1] + 1
   );
   myChart.data.datasets[0].data = sickData.slice();
-
   myChart.data.datasets[1].data = deathData.slice();
-
-  myChart.update();
-
+  myChart.data.datasets[2].data = healData.slice();
+  if (count % 50 === 0) {
+    myChart.update();
+  }
+  count++;
   window.requestAnimationFrame(draw);
 }
 

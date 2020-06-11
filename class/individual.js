@@ -12,19 +12,19 @@ export default class individual {
         this.isDead = false
     }
 
-    die(){
+    die() {
         this.isDead = true;
         this.isSick = false;
     }
 
-    heal(){
+    heal() {
         this.isSick = false;
         this.isHealed = true;
     }
 
     isGoalReached() {
         const dist = Math.abs(this.x - this.goal.x) + Math.abs(this.y - this.goal.y);
-        if (dist < 5) return true;
+        if (dist < 3) return true;
         return false;
 
     }
@@ -40,7 +40,7 @@ export default class individual {
     }
 
     move() {
-        if(!this.isDead){
+        if (!this.isDead) {
             this.x += this.dx
             this.y += this.dy
             if (this.isGoalReached()) this.setNewGoal();
