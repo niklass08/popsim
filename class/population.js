@@ -15,6 +15,9 @@ export default class population {
       const isSick = false;
       const indi = new individual({ isSick });
       indi.init();
+      //   if (Math.random() <= 0.6) {
+      //     indi.canMove = false;
+      //   }
       this._population.push(indi);
     }
   }

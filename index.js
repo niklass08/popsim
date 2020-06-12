@@ -1,5 +1,6 @@
 import population from './class/population.js';
 import config from './config/config.js';
+import decimate from './utils/decimate.js';
 
 const france = new population(config.populationSize);
 france.init();
@@ -8,11 +9,12 @@ var ctx = document.getElementById('chart').getContext('2d');
 let sickData = [0];
 let deathData = [0];
 let healData = [0];
+let labels = [0];
 let count = 0;
 var myChart = new Chart(ctx, {
-  type: 'bar',
+  type: 'line',
   data: {
-    labels: [1],
+    labels: labels,
     datasets: [
       {
         label: '# of sick',
@@ -31,7 +33,7 @@ var myChart = new Chart(ctx, {
         data: healData,
         borderWidth: 1,
         backgroundColor: 'rgba(132, 99, 255, 0.5)',
-      }
+      },
     ],
   },
   options: {
@@ -79,16 +81,14 @@ function draw() {
   let deathData = france.updateDeath();
   let healData = france.updateHeal();
   let sickData = france.propagate(config.propagationRate);
+  myChart.data.datasets[0].data = decimate(sickData.slice());
+  myChart.data.datasets[1].data = decimate(deathData.slice());
+  myChart.data.datasets[2].data = decimate(healData.slice());
+  myChart.data.labels = Array(myChart.data.datasets[0].data.length).fill('');
+  console.log(myChart.data.labels);
 
-  myChart.data.labels.push(
-    myChart.data.labels[myChart.data.labels.length - 1] + 1
-  );
-  myChart.data.datasets[0].data = sickData.slice();
-  myChart.data.datasets[1].data = deathData.slice();
-  myChart.data.datasets[2].data = healData.slice();
-  if (count % 50 === 0) {
-    myChart.update();
-  }
+  myChart.update();
+
   count++;
   window.requestAnimationFrame(draw);
 }
