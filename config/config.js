@@ -8,4 +8,6 @@ export default {
   populationSize: 2000,
   deathRate: 0.001,
   healRate: 0.002,
+  quarantine: true,
+  quarantineRate: 0.8,
 };
